@@ -26,23 +26,31 @@
   ],
   "experience": [
     {
+        "title": "Washington Township Adult Education - CompTIA Instructor", "url": "https://www.indyadulted.com/comptia-it-fundamentals",
+        "period": "August 2025- Present",
+        "points": [
+          { "text": "Provide comprehensive, instructor-led training that covers foundational IT concepts to prepare students for CompTIA certification."}
+        ]
+      },
+    {
       "title": "J. Everett Light Career Center - IT Instructor",
-      "period": "October 2024 - Present",
+      "period": "October 2024 - July 2025",
       "points": [
         { "text": "Outstanding First Year Teacher Award - Washington Township", "url": "https://x.com/msdwt/status/1925899187863876028" },
-        "\"Rising Star Educator Award\" - JELCC Recognition Award"
+        { "text": "\"Rising Star Educator Award\" - JELCC Recognition Award", "url": "./RisingStarAward.jpg" }
       ]
     },
     {
       "title": "Chainlink - Community Advocate",
       "period": "April 2024 - Present",
+      "url": "https://chain.link/",
       "points": [
         "Develop and build relationships across social media communities to promote the adoption of decentralized web applications"
       ]
     },
     {
       "title": "Nexstar Media Group - Copy Editor",
-      "period": "March 2022 - October 2023",
+      "period": "August 2022 - October 2023",
       "points": [
         "Edited and applied content instructions for digital and broadcast media to ensure clarity, consistency, and accuracy"
       ]
