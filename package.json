@@ -1,0 +1,13 @@
+{
+  "name": "online-resume2025",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Professional resume website with glassmorphism, rendering content from resume.json.",
+  "scripts": {
+    "start": "http-server -c-1 -p 5173"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
