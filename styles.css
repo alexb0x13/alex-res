@@ -3,8 +3,8 @@
   --fg: #e8eefc;
   --glass: rgba(255,255,255,0.08);
   --border: rgba(255,255,255,0.25);
-  --accent: #5bc0ff;
-  --accent2: #a78bfa;
+  --accent: #1194e6;
+  --accent2: #1106ad;
   --shadow: 0 20px 40px rgba(0,0,0,0.35);
 }
 
@@ -13,23 +13,33 @@ html, body { height: 100%; }
 body {
   margin: 0;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-  background: radial-gradient(1200px 1200px at 10% 10%, #12204a 0%, var(--bg) 55%),
-              radial-gradient(1000px 1000px at 90% 20%, #1a2a5a 0%, transparent 60%),
-              radial-gradient(1000px 800px at 50% 100%, #1a1a3a 0%, transparent 60%),
-              linear-gradient(180deg, #0a0f1f, #0a0f1f);
+  background: #0b1020; /* flat base color to prevent seam at viewport edge */
   color: var(--fg);
+  position: relative; /* enable pseudo-element layering */
 }
 
-.bg-blobs::before, .bg-blobs::after {
+/* Put all gradient art on an oversized fixed layer so its edges are off-screen */
+body::before {
   content: "";
-  position: fixed; inset: -10% -10% auto auto; z-index: -2;
-  width: 40vmax; height: 40vmax;
-  filter: blur(60px);
-  background: radial-gradient(circle at 30% 30%, rgba(91,192,255,0.45), transparent 60%),
-              radial-gradient(circle at 70% 70%, rgba(167,139,250,0.45), transparent 60%);
-  transform: translate3d(0,0,0);
+  position: fixed; left: 0; right: 0; top: -25vh; height: 150vh; pointer-events: none;
+  background:
+    radial-gradient(1600px 1200px at 15% 6%, rgba(11,148,167,0.45) 0%, rgba(11,148,167,0.00) 58%),
+    radial-gradient(1500px 1000px at 85% 15%, rgba(26,42,90,0.50) 0%, rgba(26,42,90,0.00) 70%),
+    linear-gradient(180deg, rgba(9, 168, 189, 0.14) 0%, rgba(25,112,170,0.08) 50%, rgba(25,112,170,0.06) 80%, rgba(11, 47, 165, 0.1) 100%);
+  mix-blend-mode: normal;
+  will-change: transform;
+  z-index: 0;
 }
-.bg-blobs::after { inset: auto auto -10% -10%; }
+
+/* Very subtle grain overlay to hide any residual banding */
+body::after {
+  content: "";
+  position: fixed; left: 0; right: 0; top: -25vh; height: 150vh; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 100 100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
+  background-size: 280px 280px;
+  mix-blend-mode: overlay;
+  z-index: 0;
+}
 
 main { max-width: 980px; margin: 40px auto; padding: 0 20px; }
 header, footer { max-width: 980px; margin: 24px auto; padding: 0 20px; }
@@ -54,6 +64,10 @@ a:visited, .item a:visited { color: var(--fg); }
 #email:hover { text-decoration: underline; }
 
 h2 { margin: 0 0 12px; font-weight: 700; letter-spacing: 0.3px; }
+#education h2,
+#experience h2 {
+  color: var(--accent);
+}
 .items { display: grid; gap: 14px; }
 .item {
   background: var(--glass);
@@ -66,6 +80,24 @@ h2 { margin: 0 0 12px; font-weight: 700; letter-spacing: 0.3px; }
 .item ul { margin: 8px 0 0 18px; }
 
 footer small { opacity: 0.8; }
+
+/* Section spacing */
+#education { margin-bottom: 28px; }
+
+/* Footer spacing: extra space at bottom */
+footer { margin: 24px auto 56px; }
+
+/* keep blobs behind everything */
+.bg-blobs::before, .bg-blobs::after {
+  content: "";
+  position: fixed; inset: -10% -10% auto auto; z-index: -2;
+  width: 40vmax; height: 40vmax;
+  filter: blur(60px);
+  background: radial-gradient(circle at 30% 30%, rgba(91,192,255,0.45), transparent 60%),
+              radial-gradient(circle at 70% 70%, rgba(167,139,250,0.45), transparent 60%);
+  transform: translate3d(0,0,0);
+}
+.bg-blobs::after { inset: auto auto -10% -10%; }
 
 @media (max-width: 640px) {
   .glass.card { padding: 18px; }
