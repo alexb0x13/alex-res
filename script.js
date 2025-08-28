@@ -13,9 +13,8 @@ function el(tag, cls, text) {
 
 function renderHeader({ name, email }) {
   document.getElementById('name').textContent = name;
-  const emailA = document.getElementById('email');
-  emailA.textContent = email;
-  emailA.href = `mailto:${email}`;
+  const emailSpan = document.getElementById('email');
+  emailSpan.textContent = email;
   document.getElementById('footer-name').textContent = name;
   document.getElementById('year').textContent = new Date().getFullYear();
 }

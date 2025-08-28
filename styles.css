@@ -56,12 +56,31 @@ header, footer { max-width: 980px; margin: 24px auto; padding: 0 20px; }
 }
 
 h1 { font-weight: 800; margin: 0 0 6px; letter-spacing: 0.2px; }
-/* Link colors */
-a, .item a { color: var(--fg); text-decoration-color: rgba(255,255,255,0.5); }
-a:hover, .item a:hover { color: var(--accent); }
+/* Link styles */
+a, .item a {
+  color: var(--fg);
+  text-decoration: underline;
+  text-decoration-color: rgba(255,255,255,0.4); /* subtle clue */
+  text-underline-offset: 2px;
+  transition: color 0.18s ease, text-decoration-color 0.18s ease, opacity 0.18s ease;
+}
+a:hover, .item a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 2px;
+}
 a:visited, .item a:visited { color: var(--fg); }
-#email { color: var(--fg); opacity: 0.85; text-decoration: none; }
-#email:hover { text-decoration: underline; }
+
+/* External link indicator for links opening in new tab */
+a[target="_blank"]::after {
+  content: "\2197"; /* ↗ */
+  font-size: 0.85em;
+  margin-left: 4px;
+  opacity: 0.6;
+  transition: opacity 0.18s ease;
+}
+a[target="_blank"]:hover::after { opacity: 1; }
 
 h2 { margin: 0 0 12px; font-weight: 700; letter-spacing: 0.3px; }
 #education h2,
@@ -98,6 +117,19 @@ footer { margin: 24px auto 56px; }
   transform: translate3d(0,0,0);
 }
 .bg-blobs::after { inset: auto auto -10% -10%; }
+
+#email,
+#email:visited {
+  color: var(--fg);
+  text-decoration: none; /* ensure subtitle has no underline */
+  opacity: 0.85;
+}
+#email:hover {
+  color: var(--fg) !important;
+  text-decoration: none !important;
+  opacity: 0.85;
+  cursor: default;
+}
 
 @media (max-width: 640px) {
   .glass.card { padding: 18px; }
